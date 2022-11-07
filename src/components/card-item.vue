@@ -4,7 +4,11 @@ import { ref, computed, reactive } from 'vue'
 
 let currMaker = reactive("Filter by maker");
 
+let sortType = reactive("Sort by:");
+
 const makerList = reactive(["Telsa" ,"Porsche" ,"Toyota" ,"Honda" ,"Mazda" ,"Mercedes" ,"Lexus" ,"Lamborghini" ,"Audi", "BMW"]);
+
+const sortList = reactive(["Price:Low to High", "Price:High to Low" ,"Newest Arrivals"]);
 
 const model3 = reactive({
     imgUrl: "https://media.istockphoto.com/photos/electric-sports-car-the-tesla-model-3-picture-id1277254968?k=6&m=1277254968&s=612x612&w=0&h=4j3WhZQD95BJyqOnML2sDatX9SFQomJclLyd5bbV3FU=",
@@ -172,20 +176,33 @@ const carList = [model3, modelY, modelS, modelX, camry, accord, civic, cx5, caye
 
 let viewList = carList;
 
-const getViewItems = computed(()=>{
+const getViewList = computed(()=>{
     viewList = [];
-    if(category === "Filter by maker") viewList = carList;
+    if(currMaker === "Filter by maker") viewList = carList;
     else {
         for(let i = 0; i < carList.length; i++){
-            if(category === carList[i].maker) viewList.push(carList[i]);
+            if(currMaker === carList[i].maker) viewList.push(carList[i]);
         }
     }
     return viewList;
 });
 
+const sortItems = computed(() => {
+    getViewList;
+    switch(sortType){
+        case "Low to High":
+            return [...viewList].sort((a, b) => a.price - b.price);
+        case "High to Low":
+            return [...viewList].sort((a, b) => b.price - a.price);
+        case "Newest Arrivals":
+            return [...viewList].sort((a, b) => b.date - a.date);
+        default:
+            return viewList;
+    }
+});
+
 </script>
 <template>
-    <div class="d-flex justify-content-center row">
         <div class="d-flex pt-5">
             <div class="mx-2">
                 <select class="form-select" aria-label="Default select example">
@@ -196,9 +213,7 @@ const getViewItems = computed(()=>{
             <div>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Sort by:</option>
-                    <option value="Price:Low to High">Price: Low to High</option>
-                    <option value="Price:High to Low">Price: High to Low</option>
-                    <option value="Newest Arrivals">Newest Arrivals</option>
+                    <option v-for="sortT in sortList" :value="sortType">{{sortT}}</option>
                 </select>
             </div>
         </div>
@@ -213,5 +228,4 @@ const getViewItems = computed(()=>{
                 </div>
             </div>
         </div>
-    </div>
 </template>

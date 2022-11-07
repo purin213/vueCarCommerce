@@ -3,7 +3,9 @@ import CardItems from './components/card-item.vue'
 </script>
 
 <template>
-  <CardItems />
+  <div class="d-flex justify-content-center row">
+    <CardItems />
+  </div>
 </template>
 
 <style scoped>
