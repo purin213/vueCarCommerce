@@ -164,32 +164,18 @@ const twoSeries =reactive({
 
 const carList = [model3, modelY, modelS, modelX, camry, accord, civic, cx5, cayenne, macan, GLEcoupe, CLA, GLA250, rx350, nx300, urus, aventador, A3, x3, twoSeries];
 
-const createCarCard = (carObj)=>{
-    let res = document.createElement("div");
-    res.innerHTML += `
-    <div class="card m-2" style="width: 18rem;">
-        <div class="card-body">
-            <img src="${carObj.imgUrl}" class="card-img-top" alt="...">
-            <h5 class="card-title pt-2">${carObj.name}</h5>
-            <p class="card-text">Maker: ${carObj.maker}</p>
-            <p class="card-text">Price: $${carObj.price}</p>
-            <p class="card-text">Date: ${carObj.date}</p>
-        </div>
-    </div>
-    `;
-    return res;
-}
-
 </script>
 <template>
-    <div class="d-flex flex-wrap pt-4 text-secondary" v-for="car in carList">
-        <div class="card m-2" style="width: 18rem;">
-            <div class="card-body">
-                <img v-bind:src="car.imgUrl" class="card-img-top" alt="...">
-                <h5 class="card-title pt-2">{{car.name}}</h5>
-                <p class="card-text">Maker: {{car.maker}}</p>
-                <p class="card-text">Price: ${{car.price}}</p>
-                <p class="card-text">Date: {{car.date}}</p>
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex col-md-4 col-12 flex-wrap pt-4 text-secondary" v-for="car in carList">
+            <div class="card m-2" style="width: 18rem;">
+                <div class="card-body">
+                    <img v-bind:src="car.imgUrl" class="card-img-top" alt="...">
+                    <h5 class="card-title pt-2">{{car.name}}</h5>
+                    <p class="card-text">Maker: {{car.maker}}</p>
+                    <p class="card-text">Price: ${{car.price}}</p>
+                    <p class="card-text">Date: {{car.date}}</p>
+                </div>
             </div>
         </div>
     </div>
