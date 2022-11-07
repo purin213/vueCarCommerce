@@ -1,5 +1,7 @@
 <script setup>
-//defineProps()
+
+import { ref, computed } from 'vue'
+
 const model3 = {
     imgUrl: "https://media.istockphoto.com/photos/tesla-model-y-in-austin-texas-at-360-bridge-picture-id1272025387?k=6&m=1272025387&s=612x612&w=0&h=o_W18f-pFNdHsSpdaNejXSS7G8XnWfayhinzZVWhQU8=",
     name: "Model 3",
