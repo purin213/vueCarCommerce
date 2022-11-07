@@ -2,6 +2,10 @@
 
 import { ref, computed, reactive } from 'vue'
 
+let currMaker = reactive("Filter by maker");
+
+const makerList = reactive(["Telsa" ,"Porsche" ,"Toyota" ,"Honda" ,"Mazda" ,"Mercedes" ,"Lexus" ,"Lamborghini" ,"Audi", "BMW"]);
+
 const model3 = reactive({
     imgUrl: "https://media.istockphoto.com/photos/electric-sports-car-the-tesla-model-3-picture-id1277254968?k=6&m=1277254968&s=612x612&w=0&h=4j3WhZQD95BJyqOnML2sDatX9SFQomJclLyd5bbV3FU=",
     name: "Model 3",
@@ -162,11 +166,42 @@ const twoSeries =reactive({
     date:"2019-2-15"
 });
 
+
+
 const carList = [model3, modelY, modelS, modelX, camry, accord, civic, cx5, cayenne, macan, GLEcoupe, CLA, GLA250, rx350, nx300, urus, aventador, A3, x3, twoSeries];
+
+let viewList = carList;
+
+const getViewItems = computed(()=>{
+    viewList = [];
+    if(category === "Filter by maker") viewList = carList;
+    else {
+        for(let i = 0; i < carList.length; i++){
+            if(category === carList[i].maker) viewList.push(carList[i]);
+        }
+    }
+    return viewList;
+});
 
 </script>
 <template>
     <div class="d-flex justify-content-center row">
+        <div class="d-flex pt-5">
+            <div class="mx-2">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Filter by maker</option>
+                    <option v-for="maker in makerList" :value="maker">{{maker}}</option>
+                </select>
+            </div>
+            <div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Sort by:</option>
+                    <option value="Price:Low to High">Price: Low to High</option>
+                    <option value="Price:High to Low">Price: High to Low</option>
+                    <option value="Newest Arrivals">Newest Arrivals</option>
+                </select>
+            </div>
+        </div>
         <div class="d-flex col-md-4 col-12 flex-wrap pt-4 text-secondary" v-for="car in carList">
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-body">
