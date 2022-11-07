@@ -3,7 +3,7 @@
 import { ref, computed, reactive } from 'vue'
 
 const model3 = reactive({
-    imgUrl: "https://media.istockphoto.com/photos/tesla-model-y-in-austin-texas-at-360-bridge-picture-id1272025387?k=6&m=1272025387&s=612x612&w=0&h=o_W18f-pFNdHsSpdaNejXSS7G8XnWfayhinzZVWhQU8=",
+    imgUrl: "https://media.istockphoto.com/photos/electric-sports-car-the-tesla-model-3-picture-id1277254968?k=6&m=1277254968&s=612x612&w=0&h=4j3WhZQD95BJyqOnML2sDatX9SFQomJclLyd5bbV3FU=",
     name: "Model 3",
     maker: "Tesla",
     price: "48,190",
@@ -185,7 +185,7 @@ const createCarCard = (carObj)=>{
     <div class="d-flex flex-wrap pt-4 text-secondary" v-for="car in carList">
         <div class="card m-2" style="width: 18rem;">
             <div class="card-body">
-                <img src="{{car.imgUrl}}" class="card-img-top" alt="...">
+                <img v-bind:src="car.imgUrl" class="card-img-top" alt="...">
                 <h5 class="card-title pt-2">{{car.name}}</h5>
                 <p class="card-text">Maker: {{car.maker}}</p>
                 <p class="card-text">Price: ${{car.price}}</p>
