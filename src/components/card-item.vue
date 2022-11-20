@@ -1,9 +1,9 @@
 <script setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, watch} from 'vue'
 import carCard from './carCardList.vue'
 
 let currMaker = reactive("Filter by maker");
-let sortType = reactive("Sort by:");
+let currSort = reactive("Sort by:");
 
 const makerList = reactive(["Telsa" ,"Porsche" ,"Toyota" ,"Honda" ,"Mazda" ,"Mercedes" ,"Lexus" ,"Lamborghini" ,"Audi", "BMW"]);
 const sortList = reactive(["Price:Low to High", "Price:High to Low" ,"Newest Arrivals"]);
@@ -150,7 +150,7 @@ const twoSeries =reactive({
 });
 
 const carList = [model3, modelY, modelS, modelX, camry, accord, civic, cx5, cayenne, macan, GLEcoupe, CLA, GLA250, rx350, nx300, urus, aventador, A3, x3, twoSeries];
-let viewList = carList;
+let viewList = reactive(carList);
 
 const getViewList = computed(()=>{
     viewList = [];
@@ -164,7 +164,7 @@ const getViewList = computed(()=>{
 });
 const sortItems = computed(() => {
     getViewList;
-    switch(sortType){
+    switch(currSort){
         case "Low to High":
             return [...viewList].sort((a, b) => a.price - b.price);
         case "High to Low":
@@ -175,6 +175,8 @@ const sortItems = computed(() => {
             return viewList;
     }
 });
+
+
 
 </script>
 <template>
@@ -188,7 +190,7 @@ const sortItems = computed(() => {
             <div>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Sort by:</option>
-                    <option v-for="sortT in sortList" :value="sortType">{{sortT}}</option>
+                    <option v-for="sortT in sortList" :value="sortT">{{sortT}}</option>
                 </select>
             </div>
         </div>
