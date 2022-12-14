@@ -1,7 +1,10 @@
 <template>
     <div class="d-flex pt-5">
         <div class="mx-2">
-            <input>
+            <select class="form-select">
+                <option selected>Maker:</option>
+                <option v-for="maker in makerList" :value="maker">{{maker}}</option>
+            </select>
         </div>
         <div>
             <select class="form-select">
