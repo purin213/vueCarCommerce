@@ -13,14 +13,16 @@
             </select>
         </div>
     </div>
-    <div class="d-flex flex-wrap pt-4 text-secondary" v-for="car in carList">
-        <div class="card m-2" style="width: 18rem;">
-            <div class="card-body">
-                <img v-bind:src="car.imgUrl" class="card-img-top" alt="...">
-                <h5 class="card-title pt-2">{{car.name}}</h5>
-                <p class="card-text">Maker: {{car.maker}}</p>
-                <p class="card-text">Price: ${{car.price}}</p>
-                <p class="card-text">Date: {{car.date}}</p>
+    <div class="d-flex flex-wrap pt-4 text-secondary">
+        <div v-for="car in carList">
+            <div class="card m-2" style="width: 18rem;">
+                <div class="card-body">
+                    <img v-bind:src="car.imgUrl" class="card-img-top" alt="...">
+                    <h5 class="card-title pt-2">{{car.name}}</h5>
+                    <p class="card-text">Maker: {{car.maker}}</p>
+                    <p class="card-text">Price: ${{car.price}}</p>
+                    <p class="card-text">Date: {{car.date}}</p>
+                </div>
             </div>
         </div>
     </div>
